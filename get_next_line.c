@@ -15,14 +15,14 @@
 char *get_line(char *str)
 {
 	char	*l;
-	ssize_t		i;
+	int		i;
 
 	i = 0;
 	if (!str[i])
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	l = malloc(sizeof(char) * (i + 2));
+	l = (char *)malloc(sizeof(char) * (i + 2));
 	if (!l)
 		return (NULL);
 	i = 0;
@@ -47,15 +47,19 @@ char	*ft_add(char *p)
 	int		j;
 
 	i = 0;
-	if (!p[i])
-		return (NULL);
 	while(p[i] && p[i] != '\n')
 		i++;
+	if (!p[i])
+	{
+		free(p);
+		return (NULL);
+	}
 	st = malloc(sizeof(char) * (ft_strlen(p) - i + 1));
 	if (!st)
 	return (NULL);
+	i++;
 	j = 0;
-	while (p[i] && p[i] != '\n')
+	while (p[i])
 		st[j++] = p[i++];
 	st[j] = '\0';
 	free(p);
@@ -70,7 +74,8 @@ char	*read_sv(int fd,char *s)
 	b = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if(!b)
 		return (NULL);
-	while(!ft_strchr(b,'\n') && BUFFER_SIZE != 0)
+	rbyt = 1;
+	while(!ft_strchr(b,'\n') && rbyt != 0)
 	{
 		rbyt = read(fd, b, BUFFER_SIZE);
 		if(rbyt == -1)
@@ -91,11 +96,11 @@ char *get_next_line(int fd)
 	static char	*b;
 	char		*ln;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (0);
 	b = read_sv(fd,b);
 	if(!b)
 		return(NULL);
 	ln = get_line(b);
 	b = ft_add(b);
-	return(b);
+	return(ln);
 }
