@@ -6,11 +6,11 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/26 15:08:27 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/26 16:18:17 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_get_line(char *str)
 {
@@ -66,7 +66,7 @@ char	*ft_add(char *p)
 	return (st);
 }
 
-char	*read_sv(int fd, char *s)
+char	*ft_read_sv(int fd, char *s)
 {
 	char	*b;
 	int		rbyt;
@@ -92,15 +92,19 @@ char	*read_sv(int fd, char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	**b;
+	static char	*b[256];
 	char		*ln;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (NULL);
-	b = read_sv(fd, b);
+	b[fd] = ft_read_sv(fd, b[fd]);  // Read and store content for the fd
+	if (!b[fd])  // If reading failed, return NULL
+		return (NULL);
+	/*
+	b = ft_read_sv(fd, b[fd]);
 	if (!b)
-		return (NULL);
-	ln = ft_get_line(b);
-	b = ft_add(b);
+		return (NULL);*/
+	ln = ft_get_line(b[fd]);
+	b[fd] = ft_add(b[fd]);
 	return (ln);
 }

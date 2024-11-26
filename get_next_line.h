@@ -6,14 +6,12 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:25:46 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/25 20:36:52 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/26 15:50:16 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# define BUFFER_SIZE 10
 
 # include <stdlib.h>
 # include <unistd.h>
