@@ -22,6 +22,8 @@ char	*ft_get_line(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
+	if (i == 1)
+		i = 0;
 	l = (char *)malloc(sizeof(char) * (i + 2));
 	if (!l)
 		return (NULL);
@@ -85,6 +87,11 @@ char	*ft_read_sv(int fd, char *s)
 			return (NULL);
 		}
 		b[rbyt] = '\0';
+		if (rbyt == 0)
+                {
+			free(b);
+			return (s);
+                }
 		s = ft_strjoin(s, b);
 	}
 	free(b);
@@ -93,10 +100,10 @@ char	*ft_read_sv(int fd, char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*b[256];
+	static char	*b[1024];
 	char		*ln;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
 	b[fd] = ft_read_sv(fd, b[fd]);
 	if (!b[fd])
