@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/26 16:18:17 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:17:55 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char	*ft_read_sv(int fd, char *s)
 		rbyt = read(fd, b, BUFFER_SIZE);
 		if (rbyt == -1)
 		{
+			free(s);
 			free(b);
 			return (NULL);
 		}
@@ -97,13 +98,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (NULL);
-	b[fd] = ft_read_sv(fd, b[fd]);  // Read and store content for the fd
-	if (!b[fd])  // If reading failed, return NULL
+	b[fd] = ft_read_sv(fd, b[fd]);
+	if (!b[fd])
 		return (NULL);
-	/*
-	b = ft_read_sv(fd, b[fd]);
-	if (!b)
-		return (NULL);*/
 	ln = ft_get_line(b[fd]);
 	b[fd] = ft_add(b[fd]);
 	return (ln);

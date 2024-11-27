@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/26 15:58:26 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:54:52 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_get_line(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
+	if (i == 1)
+		i = 0;
 	l = (char *)malloc(sizeof(char) * (i + 2));
 	if (!l)
 		return (NULL);
@@ -80,6 +82,7 @@ char	*read_sv(int fd, char *s)
 		rbyt = read(fd, b, BUFFER_SIZE);
 		if (rbyt == -1)
 		{
+			free(s);
 			free(b);
 			return (NULL);
 		}

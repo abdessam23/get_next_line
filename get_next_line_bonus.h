@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:25:46 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/26 16:17:36 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:24:43 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE    1
+# endif
 
 char	*get_next_line(int fd);
 char	*ft_get_line(char *str);
