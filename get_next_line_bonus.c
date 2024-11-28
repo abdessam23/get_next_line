@@ -22,8 +22,6 @@ char	*ft_get_line(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (i == 1)
-		i = 0;
 	l = (char *)malloc(sizeof(char) * (i + 2));
 	if (!l)
 		return (NULL);
@@ -81,17 +79,8 @@ char	*ft_read_sv(int fd, char *s)
 	{
 		rbyt = read(fd, b, BUFFER_SIZE);
 		if (rbyt == -1)
-		{
-			free(s);
-			free(b);
-			return (NULL);
-		}
+			return (free(s), free(b), NULL);
 		b[rbyt] = '\0';
-		if (rbyt == 0)
-                {
-			free(b);
-			return (s);
-                }
 		s = ft_strjoin(s, b);
 	}
 	free(b);

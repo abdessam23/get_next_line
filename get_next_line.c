@@ -79,17 +79,8 @@ char	*read_sv(int fd, char *s)
 	{
 		rbyt = read(fd, b, BUFFER_SIZE);
 		if (rbyt == -1)
-		{
-			free(s);
-			free(b);
-			return (NULL);
-		}
+			return (free(s), free(b), NULL);
 		b[rbyt] = '\0';
-		if (rbyt == 0)
-		{
-			free(b);
-			return (s);
-		}
 		s = ft_strjoin(s, b);
 	}
 	free(b);
