@@ -71,13 +71,13 @@ char	*ft_read_sv(int fd, char *s)
 	char	*b;
 	int		rbyt;
 
-	b = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	b = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!b)
 		return (NULL);
 	rbyt = 1;
 	while (!ft_strchr(s, '\n') && rbyt != 0)
 	{
-		rbyt = read(fd, b, BUFFER_SIZE);
+		rbyt = read(fd, b, (size_t)BUFFER_SIZE);
 		if (rbyt == -1)
 			return (free(s), free(b), NULL);
 		b[rbyt] = '\0';

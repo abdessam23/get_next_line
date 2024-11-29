@@ -81,6 +81,8 @@ char	*read_sv(int fd, char *s)
 		if (rbyt == -1)
 			return (free(s), free(b), NULL);
 		b[rbyt] = '\0';
+		if (rbyt == 0)
+			break ;
 		s = ft_strjoin(s, b);
 	}
 	free(b);
