@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:25:46 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/27 11:24:39 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/30 11:29:21 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
-# endif
-
-# if BUFFER_SIZE > 2147483646
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 0
 # endif
 
 # include <stdlib.h>

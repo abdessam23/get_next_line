@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/30 09:20:29 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/30 11:27:55 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_read_sv(int fd, char *s)
 	char	*b;
 	int		rbyt;
 
-	b = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	b = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!b)
 		return (NULL);
 	rbyt = 1;
