@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:25:46 by abhimi            #+#    #+#             */
-/*   Updated: 2024/11/27 11:24:43 by abhimi           ###   ########.fr       */
+/*   Updated: 2024/11/30 09:23:30 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE    1
+# endif
+
+# if BUFFER_SIZE > 2147483646
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
 # endif
 
 char	*get_next_line(int fd);
